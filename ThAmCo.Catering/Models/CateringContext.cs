@@ -10,6 +10,8 @@ namespace ThAmCo.Catering.Models
     {
         public DbSet<FoodItem> FoodItems { get; set; }
 
+        public DbSet<Menu> Menus { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options) =>
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Catering;");
 
@@ -22,6 +24,12 @@ namespace ThAmCo.Catering.Models
                 new FoodItem { FoodItemId = 1, Description = "Chicken", UnitPrice = 4.50F},
                 new FoodItem { FoodItemId = 2, Description = "Beef", UnitPrice = 5.50F },
                 new FoodItem { FoodItemId = 3, Description = "Lamb", UnitPrice = 6.50F }
+                );
+
+            builder.Entity<Menu>().HasData(
+                new Menu { MenuId = 1, MenuName = "Wedding"},
+                new Menu { MenuId = 2, MenuName = "Birthday" },
+                new Menu { MenuId = 3, MenuName = "Christening" }
                 );
         }
     }
