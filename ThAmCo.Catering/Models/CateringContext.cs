@@ -14,6 +14,8 @@ namespace ThAmCo.Catering.Models
 
         public DbSet<FoodBooking> FoodBookings { get; set; }
 
+        public DbSet<MenuFoodItem> MenuFoodItems { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options) =>
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Catering;");
 
@@ -39,6 +41,14 @@ namespace ThAmCo.Catering.Models
                 new FoodBooking { FoodBookingId = 2, ClientReferenceId = 1, NumberOfGuests = 17, MenuId = 1},
                 new FoodBooking { FoodBookingId = 3, ClientReferenceId = 16, NumberOfGuests = 7, MenuId = 3},
                 new FoodBooking { FoodBookingId = 4, ClientReferenceId = 5, NumberOfGuests = 19, MenuId = 2}
+                );
+
+            builder.Entity<MenuFoodItem>().HasData(
+                new MenuFoodItem { MenuFoodItemId = 1, MenuId = 1, FoodItemId = 1},
+                new MenuFoodItem { MenuFoodItemId = 2, MenuId = 1, FoodItemId = 2},
+                new MenuFoodItem { MenuFoodItemId = 3, MenuId = 2, FoodItemId = 3},
+                new MenuFoodItem { MenuFoodItemId = 4, MenuId = 3, FoodItemId = 1},
+                new MenuFoodItem { MenuFoodItemId = 5, MenuId = 3, FoodItemId = 3}
                 );
         }
     }
