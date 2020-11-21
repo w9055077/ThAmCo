@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,5 +24,8 @@ namespace ThAmCo.Catering.Models
         public int NumberOfGuests { get; set; }
 
         public int MenuId { get; set; }
+
+        [Required]
+        public Menu Menu { get; set; }
     }
 }
