@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ThAmCo.Catering.Models;
 
-namespace ThAmCo.Catering.Models
+namespace ThAmCo.Catering.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
