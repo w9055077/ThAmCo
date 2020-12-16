@@ -20,25 +20,38 @@ namespace ThAmCo.Catering.Controllers
             _context = context;
         }
 
+        // GET is a DTO
         // GET: api/FoodItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FoodItem>>> GetFoodItems()
+        public IQueryable<FoodItemDto> GetFoodItems()
         {
-            return await _context.FoodItems.ToListAsync();
+            var fooditems = from b in _context.FoodItems
+                            select new FoodItemDto()
+                            {
+                                FoodItemId = b.FoodItemId,
+                                Description = b.Description,
+                                UnitPrice = b.UnitPrice
+                            };
+            return fooditems;                    
         }
 
         // GET: api/FoodItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FoodItem>> GetFoodItem(int id)
         {
-            var foodItem = await _context.FoodItems.FindAsync(id);
-
+            var foodItem = await _context.FoodItems.Select(b =>
+                new FoodItemDto()
+                {
+                    FoodItemId = b.FoodItemId,
+                    Description = b.Description,
+                    UnitPrice = b.UnitPrice
+                }).SingleOrDefaultAsync(b => b.FoodItemId == id);
             if (foodItem == null)
             {
                 return NotFound();
             }
 
-            return foodItem;
+            return Ok(foodItem);
         }
 
         // PUT: api/FoodItems/5
